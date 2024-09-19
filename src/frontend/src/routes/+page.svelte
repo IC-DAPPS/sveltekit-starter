@@ -3,6 +3,7 @@
 	import { authStore } from '$lib/stores/auth.store';
 	import { AuthClient } from '@dfinity/auth-client';
 	import { createActor } from '../../../declarations/backend';
+	import { onMount } from 'svelte';
 
 	let input = '';
 	let disabled = false;
@@ -30,18 +31,13 @@
 		disabled = false;
 	};
 
-	// Safari double clicks issues with the AuthButton component can be fixed temporarily with below hack
-	// let calledAuthClientOnceInSafari = false;
-	// onMount(async () => {
-	// 	try {
-	// 		if (/apple/i.test(navigator?.vendor) && !calledAuthClientOnceInSafari) {
-	// 			await authStore.signIn({ domain: 'internetcomputer.org' });
-	// 			calledAuthClientOnceInSafari = true;
-	// 		}
-	// 	} catch (error) {
-	// 		console.error('Sign in error:', error);
-	// 	}
-	// });
+	onMount(async () => {
+		try {
+			await authStore.sync();
+		} catch (error) {
+			console.error('Sign in error:', error);
+		}
+	});
 </script>
 
 <main>
