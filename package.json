@@ -1,0 +1,55 @@
+{
+	"name": "sveltekit-starter",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Internet Computer SvelteKit starter application",
+	"keywords": [
+		"Internet Computer",
+		"Motoko",
+		"JavaScript",
+		"Canister",
+		"SvelteKit"
+	],
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write .",
+		"prebuild": "npm run generate",
+		"generate": "dfx generate && node ./update.types.mjs && npm run format"
+	},
+	"devDependencies": {
+		"@rollup/plugin-inject": "^5.0.5",
+		"@sveltejs/adapter-static": "^3.0.4",
+		"@sveltejs/kit": "next",
+		"@types/node": "^22.5.5",
+		"@typescript-eslint/eslint-plugin": "^8.6.0",
+		"@typescript-eslint/parser": "^8.6.0",
+		"autoprefixer": "^10.4.20",
+		"eslint": "^9.10.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.44.0",
+		"prettier": "^3.3.3",
+		"prettier-plugin-motoko": "^0.9.4",
+		"prettier-plugin-organize-imports": "^4.0.0",
+		"prettier-plugin-svelte": "^3.2.6",
+		"sass": "^1.78.0",
+		"svelte": "^4.2.19",
+		"svelte-check": "^4.0.2",
+		"svelte-preprocess": "^6.0.2",
+		"tslib": "^2.7.0",
+		"typescript": "^5.6.2",
+		"vite": "^5.4.6"
+	},
+	"type": "module",
+	"dependencies": {
+		"@dfinity/agent": "^2.1.1",
+		"@dfinity/auth-client": "^2.1.1",
+		"@dfinity/candid": "^2.1.1",
+		"@dfinity/principal": "^2.1.1",
+		"@dfinity/utils": "^2.5.0"
+	}
+}
